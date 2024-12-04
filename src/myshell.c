@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "ls_command.h"
+
 #define MAX_LINE 80
 #define MAX_ARGS 10
 
@@ -39,6 +41,8 @@ int main () {
         } else if (strcmp(argv[0], "pwd") == 0) {
             getcwd(input, MAX_LINE);
             printf("%s\n", input);
+        } else if (strcmp(argv[0], "ls") == 0) {
+            my_ls();
         }
     }
 
