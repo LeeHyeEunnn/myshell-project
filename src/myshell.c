@@ -17,7 +17,6 @@ int main () {
 
         // read command ..
         fgets(input, MAX_LINE, stdin);
-        printf("%s\n", input);
 
         // tokenize input
         token = strtok(input, " \n\t");
