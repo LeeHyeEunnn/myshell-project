@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "ls_command.h"
+#include "cat_command.h"
 
 #define MAX_LINE 80
 #define MAX_ARGS 10
@@ -33,7 +34,7 @@ int main () {
             continue;
         }
 
-        if (strcmp(argv[0], "exitexit") == 0) {
+        if (strcmp(argv[0], "exit") == 0) {
             printf("Goodbye~\n");
             exit(0);
         } else if (strcmp(argv[0], "cd") == 0) {
@@ -43,6 +44,18 @@ int main () {
             printf("%s\n", input);
         } else if (strcmp(argv[0], "ls") == 0) {
             my_ls();
+        } else if (strcmp(argv[0], "cat") == 0) {
+            if (argv[1] != NULL) { // 파일 이름이 제공된 경우
+                my_cat(argv[1]);
+            } else {
+                printf("Usage: cat <filename>\n");
+            }
+        } else {
+            if(access(argv[0], X_OK) == 0) {
+                printf("execute %s\n", argv[0]);
+            } else {
+                printf("command not found: %s\n", argv[0]);
+            }
         }
     }
 
