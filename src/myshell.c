@@ -5,6 +5,7 @@
 
 #include "ls_command.h"
 #include "cat_command.h"
+#include "execute_external_command.h"
 
 #define MAX_LINE 80
 #define MAX_ARGS 10
@@ -50,6 +51,8 @@ int main () {
             } else {
                 printf("Usage: cat <filename>\n");
             }
+        } else if (access(argv[0], X_OK) == 0){
+            execute_external_command(argv);
         } else {
             if(access(argv[0], X_OK) == 0) {
                 printf("execute %s\n", argv[0]);
